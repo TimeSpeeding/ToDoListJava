@@ -27,7 +27,6 @@ public class Task {
 	public void setComplete(boolean isComplete) {
 		this.isComplete = isComplete;
 		
-	//public void dummy() { return null;}
 	}
 //Add comment line test commit work
 }

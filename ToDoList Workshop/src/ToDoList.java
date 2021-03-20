@@ -1,4 +1,5 @@
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -6,10 +7,15 @@ public class ToDoList {
 private HashMap<String, Task> tasks = new HashMap<String, Task>();
 
 	public void addTask (Task task) {
-		tasks.put(task.getDescription(), task);
+		if (task != null) {
+			tasks.put(task.getDescription(), task);
+		}
 	}
 	public void completeTask(String description) {
-		tasks.get(description).setComplete(true);
+		Task task = null;
+		if ((task = tasks.get(description)) != null){
+			task.setComplete(true);
+		};
 	}
 	public boolean getStatus(String description) {
 		return tasks.get(description).isComplete();
@@ -18,22 +24,18 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 		return tasks.get(description);
 	}
 	public Task removeTask(String description) {
-		Task task1 = tasks.remove(description);
-		return task1;
+		return tasks.remove(description);
 	}
 	public Collection<Task> getAllTasks() {
 		return tasks.values();
 	}
 	public Collection<Task> getCompletedTasks() {
-		HashMap<String, Task> completedtasks = new HashMap<String, Task>();
-		for(Task task : tasks.values()) {
-			if(task.isComplete()) {
-				completedtasks.put(task.getDescription(), task);
-			}
+		Collection<Task> completedtasks = new ArrayList<Task>();
+		Collection<Task> allTasks = new ArrayList<Task> ();
+		allTasks = getAllTasks();
+		for(Task task : allTasks) {
+			if(task.isComplete()) completedtasks.add(task);
 		}
-		return completedtasks.values();
-	}
-	public boolean isEmpty() {
-		return tasks.isEmpty();
+		return completedtasks;
 	}
 }

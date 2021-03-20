@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.Collection;
 //import java.util.HashMap;
 
@@ -9,7 +11,7 @@ import junit.framework.*;
 public class ToDoListTest extends TestCase{
 	// Define Test Fixtures
 	private Task t1, t2;
-	private String s1, s2;
+	private ToDoList tdl;
 
 	
 	public ToDoListTest() {
@@ -20,52 +22,48 @@ public class ToDoListTest extends TestCase{
 		//Initialise Test Fixtures
 		t1 = new Task("login");
 		t2 = new Task("logout");
-		s1 = "login";
-		s2 = "logout";
+		tdl = new ToDoList();
 	}
 	@After
 	 public void tearDown() throws Exception{
 		// Uninitialise test Fixtures
 		t1 = null;
 		t2 = null;
-		s1 = null;
-		s2 = null;
+		tdl = null;
 	}
 
 	@Test
 	public void testAddTask() {
-		ToDoList tdl = new ToDoList();
-		assertTrue (tdl.isEmpty());
+		assertNotNull (tdl);
 		tdl.addTask(t1);
-		assertFalse ("Task has not been added.", tdl.isEmpty());
-		assertSame ("Added task is not same.", t1, tdl.getTask(s1));
+		assertEquals(1, tdl.getAllTasks().size());
+		assertEquals(t1, tdl.getTask(t1.getDescription()));
 	}
 	@Test
 	public void testgetStatus() {
-		ToDoList tdl = new ToDoList();
+		assertNotNull (tdl);
 		tdl.addTask(t1);
 		tdl.addTask(t2);
-		tdl.completeTask(s2);
-		assertFalse("Status was wrong.", tdl.getStatus(s1));
-		assertTrue("Status was wrong.", tdl.getStatus(s2));
+		tdl.completeTask(t2.getDescription());
+		assertEquals(false, tdl.getStatus(t1.getDescription()));
+		assertEquals(true, tdl.getStatus(t2.getDescription()));
 	}
 	@Test
 	public void testRemoveTask() {
-		ToDoList tdl = new ToDoList();
+		assertNotNull (tdl);
 		tdl.addTask(t1);
-		assertFalse ("Task has not been added.", tdl.isEmpty());
-		Task task = tdl.removeTask(s1);
-		assertSame ("Removed task is not same.", task, t1);
-		assertTrue ("Task was not removed.", tdl.isEmpty());
+		tdl.addTask(t2);
+		Task task = tdl.removeTask(t1.getDescription());
+		assertNull (tdl.getTask(t1.getDescription()));
 	}
 	@Test
 	public void testGetCompletedTasks() {
 		ToDoList tdl = new ToDoList();
 		tdl.addTask(t1);
 		tdl.addTask(t2);
-		tdl.completeTask(s2);
+		tdl.completeTask(t2.getDescription());
 		Collection<Task> complete = tdl.getCompletedTasks();
-		assertFalse ("Nothing is completed.", tdl.isEmpty());
+		assertEquals (1, complete.size());
 		for (Task t : complete) {
 			assertSame (t, t2);
 		}
