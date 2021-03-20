@@ -11,6 +11,7 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 			tasks.put(task.getDescription(), task);
 		} catch(IndexOutOfBoundsException e) {}
 	}
+	
 	public void completeTask(String description) {
 		Task task = null;
 		if ((task = tasks.get(description)) != null){

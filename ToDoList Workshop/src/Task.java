@@ -2,6 +2,7 @@
 public class Task {
 	private String description = null;
 	private boolean isComplete = false;
+	private int priority = 0;
 	
 	
 	public Task(String description) {
@@ -9,10 +10,11 @@ public class Task {
 		this.description = description;
 	}
 	
-	public Task(String description, boolean isComplete) {
+	public Task(String description, boolean isComplete, int priority) {
 		super();
 		this.description = description;
 		this.isComplete = isComplete;
+		this.priority = priority;
 	}
 	
 	public String getDescription() {
@@ -27,5 +29,11 @@ public class Task {
 	public void setComplete(boolean isComplete) {
 		this.isComplete = isComplete;
 		
+	}
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+	public int getPriority() {
+		return priority;
 	}
 }
