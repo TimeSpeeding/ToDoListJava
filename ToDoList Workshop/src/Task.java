@@ -4,6 +4,9 @@ public class Task {
 	private boolean isComplete = false;
 	private int priority = 0;
 	
+	public static int Emergency = 2;
+	public static int Medium = 1;
+	public static int Slight = 0;
 	
 	public Task(String description) {
 		super();
