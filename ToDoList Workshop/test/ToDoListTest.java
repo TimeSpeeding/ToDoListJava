@@ -1,7 +1,4 @@
-import static org.junit.Assert.assertEquals;
-
 import java.util.Collection;
-//import java.util.HashMap;
 
 import org.junit.*;
 import org.junit.Test;
@@ -53,7 +50,7 @@ public class ToDoListTest extends TestCase{
 		assertNotNull (tdl);
 		tdl.addTask(t1);
 		tdl.addTask(t2);
-		Task task = tdl.removeTask(t1.getDescription());
+		tdl.removeTask(t1.getDescription());
 		assertNull (tdl.getTask(t1.getDescription()));
 	}
 	@Test
