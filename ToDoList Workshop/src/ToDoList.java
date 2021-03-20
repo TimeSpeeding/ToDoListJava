@@ -7,9 +7,9 @@ public class ToDoList {
 private HashMap<String, Task> tasks = new HashMap<String, Task>();
 
 	public void addTask (Task task) {
-		if (task != null) {
+		try{
 			tasks.put(task.getDescription(), task);
-		}
+		} catch(IndexOutOfBoundsException e) {}
 	}
 	public void completeTask(String description) {
 		Task task = null;
