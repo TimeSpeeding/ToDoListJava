@@ -39,4 +39,13 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 		}
 		return completedtasks;
 	}
+	public Collection<Task> getTasksByPriority(int priority) {
+		Collection tasksbypriority = new ArrayList<Task>();
+		Collection<Task> allTasks = new ArrayList<Task> ();
+		allTasks = getAllTasks();
+		for(Task task : allTasks) {
+			if(task.getPriority() == priority) tasksbypriority.add(task);
+		}
+		return tasksbypriority;
+	}
 }

@@ -7,7 +7,7 @@ import junit.framework.*;
 
 public class ToDoListTest extends TestCase{
 	// Define Test Fixtures
-	private Task t1, t2;
+	private Task t1, t2, t3, t4;
 	private ToDoList tdl;
 
 	
@@ -19,6 +19,8 @@ public class ToDoListTest extends TestCase{
 		//Initialise Test Fixtures
 		t1 = new Task("login");
 		t2 = new Task("logout");
+		t3 = new Task("create");
+		t4 = new Task("delete");
 		tdl = new ToDoList();
 	}
 	@After
@@ -64,6 +66,13 @@ public class ToDoListTest extends TestCase{
 		for (Task t : complete) {
 			assertSame (t, t2);
 		}
+	}
+	@Test
+	public void testGetTasksByPriority() {
+		tdl.addTask(t1);
+		tdl.addTask(t2);
+		tdl.addTask(t3);
+		tdl.addTask(t4);
 	}
 }
 
