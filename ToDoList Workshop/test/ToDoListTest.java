@@ -68,11 +68,20 @@ public class ToDoListTest extends TestCase{
 		}
 	}
 	@Test
+
 	public void testGetTasksByPriority() {
 		tdl.addTask(t1);
 		tdl.addTask(t2);
 		tdl.addTask(t3);
 		tdl.addTask(t4);
+
+	public void testSetPriority() {
+		assertNotNull(tdl);
+		assertNull(tdl.getTask(null));
+		t1.setPriority(1);
+		tdl.addTask(t1);
+		assertEquals(tdl.getTask("login").getPriority(), 1);
+
 	}
 }
 
