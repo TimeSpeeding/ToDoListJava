@@ -1,4 +1,3 @@
-//import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -39,9 +38,8 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 		}
 		return completedtasks;
 	}
-
 	public Collection<Task> getTasksByPriority(int priority) {
-		Collection tasksbypriority = new ArrayList<Task>();
+		Collection<Task> tasksbypriority = new ArrayList<Task>();
 		Collection<Task> allTasks = new ArrayList<Task> ();
 		allTasks = getAllTasks();
 		for(Task task : allTasks) {
@@ -51,6 +49,8 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 	}
 	public int getPriority(String description) {
 		return tasks.get(description).getPriority();
-
+	}
+	public void setPriority(String description, int priority) {
+		tasks.get(description).setPriority(priority);
 	}
 }

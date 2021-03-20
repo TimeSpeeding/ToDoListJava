@@ -57,7 +57,7 @@ public class ToDoListTest extends TestCase{
 	}
 	@Test
 	public void testGetCompletedTasks() {
-		ToDoList tdl = new ToDoList();
+		assertNotNull (tdl);
 		tdl.addTask(t1);
 		tdl.addTask(t2);
 		tdl.completeTask(t2.getDescription());
@@ -68,20 +68,23 @@ public class ToDoListTest extends TestCase{
 		}
 	}
 	@Test
-
 	public void testGetTasksByPriority() {
 		tdl.addTask(t1);
 		tdl.addTask(t2);
 		tdl.addTask(t3);
 		tdl.addTask(t4);
-
-	public void testSetPriority() {
+		tdl.setPriority(t1.getDescription(), Task.Emergency);
+		tdl.setPriority(t2.getDescription(), Task.Emergency);
+		tdl.setPriority(t3.getDescription(), Task.Medium);
+		Collection<Task> tasksbypriority = tdl.getTasksByPriority(Task.Emergency);
+		assertEquals (2, tasksbypriority.size());
+	}
+	@Test
+	public void testGetPriority() {
 		assertNotNull(tdl);
-		assertNull(tdl.getTask(null));
-		t1.setPriority(1);
 		tdl.addTask(t1);
-		assertEquals(tdl.getTask("login").getPriority(), 1);
-
+		tdl.setPriority(t1.getDescription(), Task.Emergency);
+		assertEquals(tdl.getPriority(t1.getDescription()), Task.Emergency);
 	}
 }
 
